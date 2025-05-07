@@ -1,8 +1,8 @@
 services:
 
-    intranet-mail-server:
+    embanet-email-server:
 
-        container_name: intranet-mail-server
+        container_name: embanet-email-server
 
         image: mailserver/docker-mailserver
 
@@ -50,10 +50,10 @@ services:
 
         volumes:
 
-            - /tmp/volume/intranet/email/data/:/var/mail/
+            - /volumes/intranet/email/data/:/var/mail/
 
-            - /tmp/volume/intranet/email/state/:/var/mail-state/
+            - /volumes/intranet/email/state/:/var/mail-state/
 
-            - /tmp/volume/intranet/email/logs/:/var/log/mail/
+            - /volumes/intranet/email/logs/:/var/log/mail/
 
-            - /tmp/volume/intranet/email/config/:/tmp/docker-mailserver/
+            - /volumes/intranet/email/config/:/tmp/docker-mailserver

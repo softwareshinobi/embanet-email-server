@@ -1,0 +1,59 @@
+services:
+
+    intranet-mail-server:
+
+        container_name: intranet-mail-server
+
+        image: mailserver/docker-mailserver
+
+        restart: unless-stopped
+
+        hostname: embanet
+
+        domainname: embanet.online
+
+        ports:
+
+            - "127.0.0.1:25:25"
+
+            - "10.28.1.1:25:25"
+
+            - "127.0.0.1:143:143"
+
+            - "10.28.1.1:143:143"
+
+            - "127.0.0.1:587:587"
+
+            - "10.28.1.1:587:587"
+
+            - "127.0.0.1:993:993"
+
+            - "10.28.1.1:993:993"
+
+        environment:
+
+            - ENABLE_SPAMASSASSIN=0
+
+            - SPAMASSASSIN_SPAM_TO_INBOX=1
+
+            - ENABLE_CLAMAV=0
+
+            - ENABLE_POSTGREY=0
+
+            - ENABLE_FAIL2BAN=0
+
+            - ENABLE_SASLAUTHD=0
+
+            - ONE_DIR=1
+
+            - TZ=America/New_York
+
+        volumes:
+
+            - /tmp/volume/intranet/email/data/:/var/mail/
+
+            - /tmp/volume/intranet/email/state/:/var/mail-state/
+
+            - /tmp/volume/intranet/email/logs/:/var/log/mail/
+
+            - /tmp/volume/intranet/email/config/:/tmp/docker-mailserver/
